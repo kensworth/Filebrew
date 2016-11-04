@@ -23,11 +23,11 @@ To be added.
 
 <h2>Site Map </h2>
 Home
-    -> Log In
-        -> Profile
-        -> Pending File Requests
-    -> Register
-    -> Send File
+> Log In
+>> Profile
+>> Pending File Requests
+> Register
+> Send File
 
 <h2>User Stories</h2>
 >1. as a user, I can send a file without being logged in by dropping a file and sending a link.

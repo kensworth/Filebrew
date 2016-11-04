@@ -22,12 +22,12 @@ We even support user accounts if you're too lazy to send a link, pending files w
 To be added.
 
 <h2>Site Map </h2>
-Home
-> Log In
-  >> Profile
-  >> Pending File Requests
-> Register
-> Send File
+* Home
+  * Log In
+    * Profile
+    * Pending File Requests
+  * Register
+  * Send File
 
 <h2>User Stories</h2>
 >1. as a user, I can send a file without being logged in by dropping a file and sending a link.

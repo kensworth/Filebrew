@@ -24,8 +24,8 @@ To be added.
 <h2>Site Map </h2>
 Home
 > Log In
->> Profile
->> Pending File Requests
+  >> Profile
+  >> Pending File Requests
 > Register
 > Send File
 

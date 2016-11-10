@@ -1,3 +1,4 @@
+'use strict';
 // Grab dependencies
 const express = require('express');
 const chalk = require('chalk'); // Chalk was added by create-react-app, use only on the dev side
@@ -19,12 +20,15 @@ const compiler = webpack(webpackConfig);
 // Initialize express
 const app = express();
 
+let aliasToMagnet = {};
+
 // Initialize the server by creating a new instance of webpackDevServer
 const server = new webpackDevServer(compiler, {
     noInfo: true,
     setup: (app) => {
         // express app instance exist here, we could create an API here -->
-        app.get('/receive', (req, res) => {
+        app.get('/:alias', (req, res) => {
+            console.log(req.params.alias);
             res.sendFile(path.join(__dirname, '../src', 'receive.html'));
         });
     }

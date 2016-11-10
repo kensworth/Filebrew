@@ -10,7 +10,6 @@ app.use('/', express.static(process.cwd() + '/build'));
 
 // Start up our express server
 app.listen(PORT, (error) => {
-  if (error) throw error;
-
-  console.log('Production server listening on port', PORT);
+    if (error) throw error;
+    console.log('Production server listening on port', PORT);
 });

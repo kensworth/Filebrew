@@ -3,6 +3,7 @@ const express = require('express');
 const chalk = require('chalk'); // Chalk was added by create-react-app, use only on the dev side
 const webpack = require('webpack');
 const webpackDevServer = require('webpack-dev-server');
+const path = require('path');
 
 // load up our environment variables
 require('dotenv').load();
@@ -23,8 +24,8 @@ const server = new webpackDevServer(compiler, {
     noInfo: true,
     setup: (app) => {
         // express app instance exist here, we could create an API here -->
-        app.get('/test', (req, res) => {
-            res.send('working');
+        app.get('/receive', (req, res) => {
+            res.sendFile(path.join(__dirname, '../src', 'receive.html'));
         });
     }
 });
@@ -32,6 +33,5 @@ const server = new webpackDevServer(compiler, {
 // Start up our server
 server.listen(PORT, (error) => {
     if (error) throw error;
-
     console.log(chalk.green('Webpack Server is listening on port'), PORT);
 });

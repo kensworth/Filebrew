@@ -20,15 +20,18 @@ const app = express();
 
 // Initialize the server by creating a new instance of webpackDevServer
 const server = new webpackDevServer(compiler, {
-  noInfo: true,
-  setup: (app) => {
-    // express app instance exist here, we could create an API here -->
-  }
+    noInfo: true,
+    setup: (app) => {
+        // express app instance exist here, we could create an API here -->
+        app.get('/test', (req, res) => {
+            res.send('working');
+        });
+    }
 });
 
 // Start up our server
 server.listen(PORT, (error) => {
-  if (error) throw error;
+    if (error) throw error;
 
-  console.log(chalk.green('Webpack Server is listening on port'), PORT);
+    console.log(chalk.green('Webpack Server is listening on port'), PORT);
 });

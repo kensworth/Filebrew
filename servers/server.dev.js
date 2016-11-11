@@ -20,15 +20,18 @@ const compiler = webpack(webpackConfig);
 // Initialize express
 const app = express();
 
-let aliasToMagnet = {};
-
 // Initialize the server by creating a new instance of webpackDevServer
 const server = new webpackDevServer(compiler, {
     noInfo: true,
     setup: (app) => {
-        // express app instance exist here, we could create an API here -->
-        app.get('/:alias', (req, res) => {
-            console.log(req.params.alias);
+        // ignore favicon such that cookie doesn't get changed
+        app.get('/favicon.ico', function(req, res) {
+                res.sendStatus(200);
+        });
+
+        app.get('/:magnet', (req, res) => {
+            const magnet = req.originalUrl;
+            res.cookie('magnet', magnet);
             res.sendFile(path.join(__dirname, '../src', 'receive.html'));
         });
     }

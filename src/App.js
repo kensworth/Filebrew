@@ -9,6 +9,8 @@ const client = new WebTorrent();
 dragDrop('body', (files) => {
     client.seed(files, (torrent) => {
         console.log('Client is seeding ' + torrent.magnetURI);
+        const URI = document.createTextNode(window.location.href + torrent.magnetURI);
+        document.body.appendChild(URI);
     });
 });
 

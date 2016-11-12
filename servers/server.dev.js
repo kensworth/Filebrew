@@ -5,6 +5,8 @@ const chalk = require('chalk'); // Chalk was added by create-react-app, use only
 const webpack = require('webpack');
 const webpackDevServer = require('webpack-dev-server');
 const path = require('path');
+const md5 = require('md5');
+const bodyParser = require('body-parser');
 
 // load up our environment variables
 require('dotenv').load();
@@ -20,19 +22,38 @@ const compiler = webpack(webpackConfig);
 // Initialize express
 const app = express();
 
+// turn into LRU cache
+let hashToMagnet = {};
+
 // Initialize the server by creating a new instance of webpackDevServer
 const server = new webpackDevServer(compiler, {
     noInfo: true,
     setup: (app) => {
+        app.use(bodyParser.urlencoded({extended: false}));
+        app.use(bodyParser.json());
         // ignore favicon such that cookie doesn't get changed
-        app.get('/favicon.ico', function(req, res) {
+        app.get('/favicon.ico', (req, res) => {
                 res.sendStatus(200);
         });
 
         app.get('/:magnet', (req, res) => {
-            const magnet = req.originalUrl;
-            res.cookie('magnet', magnet);
-            res.sendFile(path.join(__dirname, '../src', 'receive.html'));
+            const hash = req.originalUrl.slice(1);
+            if (hash in hashToMagnet) {
+                res.cookie('magnet', hashToMagnet[hash]);
+                res.sendFile(path.join(__dirname, '../src', 'receive.html'));
+            } else {
+                res.send('file does not exist');
+            }
+        });
+
+        app.post('/create-hash', (req, res) => {
+            const magnet = req.body.magnet;
+            const hash = md5(magnet);
+            if (!(hash in hashToMagnet)) {
+                hashToMagnet[hash] = magnet;
+            }
+            console.log(hashToMagnet);
+            res.send({hash});
         });
     }
 });

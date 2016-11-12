@@ -6,6 +6,7 @@
 
         <!-- Include the latest version of WebTorrent -->
         <script src="https://cdn.jsdelivr.net/webtorrent/latest/webtorrent.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/core.js"></script>
 
         <script>
             var client = new WebTorrent()
@@ -56,8 +57,7 @@
                 if (parts.length == 2) return parts.pop().split(";").shift();
             }
 
-            const torrentId = decodeURIComponent(getCookie('magnet'));
-            client.add(torrentId, onTorrent)
+            client.add(decodeURIComponent(getCookie('magnet')), onTorrent);
         </script>
     </body>
 </html>

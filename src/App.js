@@ -31,6 +31,8 @@ class App extends Component {
                 <div className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
                     <h2>File Brew</h2>
+                    <p>Drop a file on the black banner to start seeding!</p>
+                    <p>Copy/Paste the URL to a friend to share the file. Make sure you keep your browser open!</p>
                 </div>
           </div>
         );

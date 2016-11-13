@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import { browserHistory } from 'react-router';
 import '../css/index.css';
 
+import Routes from './routes';
+
 ReactDOM.render(
-    <App />,
+    <Routes history={browserHistory}/>,
     document.getElementById('root')
 );

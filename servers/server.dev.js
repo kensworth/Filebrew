@@ -36,15 +36,17 @@ const server = new webpackDevServer(compiler, {
                 res.sendStatus(200);
         });
 
+        /*
         app.get('/:magnet', (req, res) => {
             const hash = req.originalUrl.slice(1);
             if (hash in hashToMagnet) {
                 res.cookie('magnet', hashToMagnet[hash]);
-                res.sendFile(path.join(__dirname, '../src', 'receive.html'));
+                res.sendFile(path.join(__dirname, '../src/components', 'receive.html'));
             } else {
                 res.send('file does not exist');
             }
         });
+        */
 
         app.post('/create-hash', (req, res) => {
             const magnet = req.body.magnet;
@@ -55,6 +57,7 @@ const server = new webpackDevServer(compiler, {
             console.log(hashToMagnet);
             res.send({hash});
         });
+
     }
 });
 

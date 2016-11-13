@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import WebTorrent from 'webtorrent';
-import $ from 'jquery';
-import logo from './logo.svg';
-import './App.css';
+//import $ from 'jquery';
+import logo from '../../public/logo.svg';
+import '../../css/App.css';
 
 
 var client = new WebTorrent()
@@ -50,7 +50,7 @@ function log (str) {
 function getCookie(name) {
     var value = "; " + document.cookie;
     var parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
+    if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
 client.add(decodeURIComponent(getCookie('magnet')), onTorrent);
@@ -63,6 +63,7 @@ class Receive extends Component {
                     <img src={logo} className="App-logo" alt="logo" />
                     <h2>Receive</h2>
                 </div>
+                <div className="log"></div>
           </div>
         );
     }

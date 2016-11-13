@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import WebTorrent from 'webtorrent';
 import dragDrop from 'drag-drop';
 import $ from 'jquery';
-import logo from './logo.svg';
-import './App.css';
+import logo from '../../public/logo.svg';
+import '../../css/App.css';
 
 const client = new WebTorrent();
 

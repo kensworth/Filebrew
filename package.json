@@ -15,11 +15,11 @@
     "path": "^0.12.7",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-scripts": "^0.7.0",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   },
   "scripts": {
-    "start": "react-scripts start",
     "dev": "node servers/server.dev.js",
     "serve": "node server/server.prod.js",
     "build": "react-scripts build",

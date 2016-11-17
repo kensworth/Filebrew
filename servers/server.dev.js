@@ -14,7 +14,7 @@ require('dotenv').load();
 const PORT = process.env.PORT || 3000;
 
 // Grab webpack dev config file from react-scripts
-const webpackConfig = require('../node_modules/react-scripts/config/webpack.config.dev');
+const webpackConfig = require('../webpack.config.js');
 
 // Initialize Compiler with the webpackConfig
 const compiler = webpack(webpackConfig);

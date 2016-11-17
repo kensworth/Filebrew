@@ -2,6 +2,7 @@
 
 <h2>Overview</h2>
 Sending files over the internet is hard. File Brew will make it easy. Users can send files to each other peer to peer using just their browsers. Just drop in a file, and send your friend a link! File Brew will be built using WebTorrent, turning your browser into a client on a peer-to-peer network!
+https://filebrew.herokuapp.com/
 
 <h2>Site Map </h2>
 * Send File

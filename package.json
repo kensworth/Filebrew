@@ -30,9 +30,7 @@
     "drag-drop": "^2.12.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "webtorrent": "^0.98.0"
-  },
-  "devDependencies": {
+    "webtorrent": "^0.98.0",
     "autoprefixer": "^6.0.3",
     "babel-eslint": "^4.1.6",
     "babel-jscs": "^2.0.5",

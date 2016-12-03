@@ -27,8 +27,11 @@
   },
   "dependencies": {
     "babel-cli": "^6.4.0",
+    "body-parser": "^1.15.2",
     "drag-drop": "^2.12.1",
     "express": "^4.13.3",
+    "jquery": "^3.1.1",
+    "md5": "^2.2.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "webtorrent": "^0.98.0"

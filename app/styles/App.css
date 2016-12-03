@@ -1,0 +1,14 @@
+body {
+    font-family: Lucida Console;
+}
+
+.App {
+    text-align: center;
+}
+
+.AppHeader {
+    background-color: #222;
+    height: 300px;
+    padding: 20px;
+    color: white;
+}

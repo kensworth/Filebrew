@@ -7,13 +7,17 @@ import $ from 'jquery';
 
 
 class App extends Component {
-  client = new WebTorrent();
   constructor(props) {
     super(props);
+    this.client = new WebTorrent();
+    this.state = {
+      receiving: window.location.pathname !== '/'
+    }
+    this.createTorrent = this.createTorrent.bind(this);
     dragDrop('body', this.createTorrent);
   }
   createTorrent(files) {
-    client.seed(files, (torrent) => {
+    this.client.seed(files, (torrent) => {
       console.log('Client is seeding ' + torrent.magnetURI);
       $.ajax({
         type: 'POST',
@@ -24,7 +28,7 @@ class App extends Component {
       })
       .done((data) => {
         const URI = document.createTextNode(window.location.href + data.hash);
-        document.body.appendChild(URI);
+        document.getElementById('linkArea').appendChild(URI);
       });
     });
   }
@@ -36,7 +40,8 @@ class App extends Component {
           <p>Drop a file on the black banner to start seeding!</p>
           <p>Copy/Paste the URL to a friend to share the file. Make sure you keep your browser open!</p>
         </div>
-        <Receive client={this.client}/>
+        <div id="linkArea"></div>
+        <Receive receiving={this.state.receiving} client={this.client}/>
       </div>
     );
   }

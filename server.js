@@ -16,7 +16,8 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', functions);
 
-if (isDeveloping) {
+// fix production build later
+if (true) {
   const compiler = webpack(config);
   const middleware = webpackMiddleware(compiler, {
     publicPath: config.output.publicPath,

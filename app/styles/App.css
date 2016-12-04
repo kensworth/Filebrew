@@ -2,6 +2,12 @@ body {
     font-family: Lucida Console;
 }
 
+.LinkArea {
+	background-color: gray;	
+	padding: 10px;
+	height: 20px;
+}
+
 .App {
     text-align: center;
 }
@@ -11,4 +17,18 @@ body {
     height: 300px;
     padding: 20px;
     color: white;
+}
+
+.StaticLogo {
+	height: 150px;
+}
+
+.MovingLogo {
+	animation: AppLogoSpin infinite 10s linear;
+	height: 150px;
+}
+
+@keyframes AppLogoSpin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
 }

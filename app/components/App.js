@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import WebTorrent from 'webtorrent';
 import dragDrop from 'drag-drop';
 import styles from '../styles/App.css';
-import logo from '../../images/swirl.svg';
+//import logo from '../../images/swirl.svg';
 import Receive from './Receive';
 import $ from 'jquery';
 
@@ -30,20 +30,20 @@ class App extends Component {
       .done((data) => {
         const URI = document.createTextNode(window.location.href + data.hash);
         document.getElementById('linkArea').appendChild(URI);
-        document.getElementById('logo').className = styles.MovingLogo;
+        //document.getElementById('logo').className = styles.MovingLogo;
       });
     });
   }
   render() {
     const firstPrompt = this.state.receiving ? 'Your file is being brewed.' : 'Drop a file on the black banner to start seeding.' 
     const secondPrompt = this.state.receiving ? 'Please keep your browser open until the download finishes!' : 'Copy/Paste the URL to a friend to share the file. Make sure you keep your browser open!'
+    //<img src={logo} id="logo" className={this.state.receiving ? styles.MovingLogo : styles.StaticLogo} alt="logo" />
     return (
       <div className={styles.App}>
         <div className={styles.AppHeader}>
           <h2>File Brew</h2>
           <p>{firstPrompt}</p>
           <p>{secondPrompt}</p>
-          <img src={logo} id="logo" className={this.state.receiving ? styles.MovingLogo : styles.StaticLogo} alt="logo" />
         </div>
         <div id="linkArea" className={styles.LinkArea}></div>
         <Receive receiving={this.state.receiving} client={this.client}/>

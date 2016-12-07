@@ -33,9 +33,7 @@ class App extends Component {
         }
       })
       .done((data) => {
-        //const URI = document.createTextNode(window.location.href + data.hash);
         this.setState({URI: window.location.href + data.hash});
-        console.log(this.state);
         document.getElementById('coffee').className = styles.MovingLogo;
       });
     });
@@ -53,11 +51,9 @@ class App extends Component {
           <h1>File Brew</h1>
           <p>{firstPrompt}</p>
           <p>{secondPrompt}</p>
-          <div id="coffee" className={this.state.receiving ? styles.MovingLogo : styles.StaticLogo}></div>
+          <img src={coffee} id="coffee" className={this.state.receiving ? styles.MovingLogo : styles.StaticLogo} />
         </div>
-        <div>
-          { this.state.URI && <LinkArea URI={this.state.URI} /> }
-        </div>
+        { this.state.URI && <LinkArea URI={this.state.URI} /> }
         <Receive receiving={this.state.receiving} client={this.client} updateReceiving={this.updateReceiving.bind(this)} />
       </div>
     );

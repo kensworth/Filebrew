@@ -16,9 +16,11 @@ p {
   font-family: 'Inconsolata', sans-serif;
   border: 0;
   height: 30px;
-  padding: 20px;
+  padding: 30px;
+  box-sizing: border-box;
   text-align: center;
   width: 100%;
+  box-shadow: 0px 5px 5px #888888;
 }
 
 .App {
@@ -31,25 +33,30 @@ p {
   height: 100%;
   padding: 20px;
   color: white;
+  box-shadow: 0px 5px 5px #888888;
 }
 
 .StaticLogo {
   position: relative;
-  background-image: url('../../images/coffee.png');
-  background-position: center;
-  background-size: 600px;
-  background-repeat: no-repeat;
   height: 600px;
+  user-drag: none; 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .MovingLogo {
 	animation: AppLogoSpin infinite 10s linear;
   position: relative;
-  background-image: url('../../images/coffee.png');
-  background-position: center;
-  background-size: 600px;
-  background-repeat: no-repeat;
   height: 600px;
+  user-drag: none; 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 @keyframes AppLogoSpin {

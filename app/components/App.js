@@ -38,13 +38,13 @@ class App extends Component {
   render() {
     const firstPrompt = this.state.receiving ? 'Your file is being brewed.' : 'Drop a file into the cup to start seeding.';
     const secondPrompt = this.state.receiving ? 'Please keep your browser open until the download finishes!' : 'Copy/Paste the URL to a friend to share the file. Make sure you keep your browser open!';
+    //<div id="coffee" className={this.state.receiving ? styles.MovingLogo : styles.StaticLogo}></div>
     return (
       <div className={styles.App}>
         <div className={styles.AppHeader}>
           <h1>File Brew</h1>
           <p>{firstPrompt}</p>
           <p>{secondPrompt}</p>
-          <div id="coffee" className={this.state.receiving ? styles.MovingLogo : styles.StaticLogo}></div>
         </div>
         <div id="linkArea" className={styles.LinkArea}></div>
         <Receive receiving={this.state.receiving} client={this.client}/>

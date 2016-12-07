@@ -1,31 +1,50 @@
 body {
-    font-family: Lucida Console;
+  background-color: #6D4C41;
+}
+
+h1 {
+  font-family: 'Courgette', cursive;
+}
+
+p {
+  font-family: 'Raleway', sans-serif;
 }
 
 .LinkArea {
-	background-color: gray;	
+	background-color: #9E9E9E;	
 	padding: 10px;
 	height: 20px;
 }
 
 .App {
-    text-align: center;
+  margin: -10px;
+  text-align: center;
 }
 
 .AppHeader {
-    background-color: #222;
-    height: 300px;
-    padding: 20px;
-    color: white;
+  background-color: #222;
+  height: 100%;
+  padding: 20px;
+  color: white;
 }
 
 .StaticLogo {
-	height: 150px;
+  position: relative;
+  background-image: url('../../images/coffee.png');
+  background-position: center;
+  background-size: 600px;
+  background-repeat: no-repeat;
+  height: 600px;
 }
 
 .MovingLogo {
 	animation: AppLogoSpin infinite 10s linear;
-	height: 150px;
+  position: relative;
+  background-image: url('../../images/coffee.png');
+  background-position: center;
+  background-size: 600px;
+  background-repeat: no-repeat;
+  height: 600px;
 }
 
 @keyframes AppLogoSpin {

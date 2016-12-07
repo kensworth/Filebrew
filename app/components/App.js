@@ -4,6 +4,7 @@ import dragDrop from 'drag-drop';
 import styles from '../styles/App.css';
 import coffee from '../../images/coffee.png';
 import Receive from './Receive';
+import LinkArea from './LinkArea';
 import $ from 'jquery';
 
 
@@ -16,7 +17,7 @@ class App extends Component {
       URI: ''
     }
     this.createTorrent = this.createTorrent.bind(this);
-    this.highlightClick = this.highlightClick.bind(this);
+    this.updateReceiving = this.updateReceiving.bind(this);
     dragDrop('body', this.createTorrent);
   }
   createTorrent(files) {
@@ -37,8 +38,8 @@ class App extends Component {
       });
     });
   }
-  highlightClick() {
-    document.getElementById('linkArea').setSelectionRange(0, 9999);
+  updateReceiving() {
+    this.setState({receiving: false});
   }
   render() {
     const firstPrompt = this.state.receiving ? 'Your file is being brewed.' : 'Drop a file into the cup to start seeding.';
@@ -52,8 +53,10 @@ class App extends Component {
           <p>{secondPrompt}</p>
           <div id="coffee" className={this.state.receiving ? styles.MovingLogo : styles.StaticLogo}></div>
         </div>
-        <input readOnly type="text" id="linkArea" onClick={this.highlightClick} className={styles.LinkArea} value={this.state.URI} />
-        <Receive receiving={this.state.receiving} client={this.client}/>
+        <div>
+          { this.state.URI && <LinkArea URI={this.state.URI} /> }
+        </div>
+        <Receive receiving={this.state.receiving} client={this.client} updateReceiving={this.updateReceiving.bind(this)} />
       </div>
     );
   }

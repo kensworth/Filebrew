@@ -52,6 +52,7 @@ class Receive extends Component {
         if (err) return log(err.message)
         self.log('File done.');
         self.log('<a href="' + url + '">Download full file: ' + file.name + '</a>');
+        self.props.updateReceiving();
       });
     });
   }

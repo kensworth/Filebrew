@@ -19,7 +19,7 @@ class Receive extends Component {
       })
       .done((data) => {
         if (!data) {
-          // error handling
+          // error handling needed
           console.log('invalid link');
         }
         this.props.client.add(data.magnetURI, this.onTorrent);

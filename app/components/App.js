@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import WebTorrent from 'webtorrent';
 import dragDrop from 'drag-drop';
 import styles from '../styles/App.css';
-import coffee from '../../images/coffee.png';
+//import coffee from '../../images/coffee.png';
 import Receive from './Receive';
 import $ from 'jquery';
 

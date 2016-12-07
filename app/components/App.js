@@ -7,6 +7,8 @@ import Receive from './Receive';
 import LinkArea from './LinkArea';
 import $ from 'jquery';
 
+// TODO: error handling for invalid hashes
+// TODO: disallow seeding a new file from a receiving link
 
 class App extends Component {
   constructor(props) {

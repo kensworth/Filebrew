@@ -1,38 +1,21 @@
-# webpack-express-boilerplate
-A boilerplate for running a Webpack workflow in Node express
+<h1> File Brew </h1>
 
-Please read the following article: [The ultimate Webpack setup](http://www.christianalfoni.com/articles/2015_04_19_The-ultimate-webpack-setup) to know more about this boilerplate.
+<h2>Overview</h2>
+Sending files over the internet is hard. File Brew will make it easy. Users can send files to each other peer to peer using just their browsers. Just drop in a file, and send your friend a link! File Brew will be built using WebTorrent, turning your browser into a client on a peer-to-peer network!
 
-## Major update to project
-Inspired by [this project](https://github.com/vesparny/react-kickstart) and the evolving of [react-transform](https://github.com/gaearon/react-transform-boilerplate) and [CSS Modules]((http://glenmaddern.com/articles/css-modules)), this project has gotten a major upgrade.
+<h2>Site Map </h2>
+* Send File
+* Receive File
 
-**NOTE!** Use the latest version of Node, 4.x.x.
+<h2>User Stories</h2>
+1. As a user, I can send a file without being logged in by dropping a file and sending a link.
 
-## Install and Running
-`git clone https://github.com/christianalfoni/webpack-express-boilerplate.git`
-
-or just export the files:
-
-`svn export https://github.com/christianalfoni/webpack-express-boilerplate/trunk ./dir`
-
-1. cd webpack-express-boilerplate
-2. npm install
-3. npm start
-4. navigate to http://localhost:3000 in your browser of choice.
-
-
-## Overview
-
-### React by default
-The project runs with React by default and hot replacement of changes to the modules. Currently it is on 0.14.3.
-
-### CSS Modules
-CSS files loaded into components are locally scoped and you can point to class names with javascript. You can also compose classes together, also from other files. These are also hot loaded. Read more about them [here](http://glenmaddern.com/articles/css-modules).
-
-To turn off CSS Modules remove it from the `webpack.config.js` file.
-
-### Babel and Linting
-Both Node server and frontend code runs with Babel. And all of it is linted. With atom you install the `linter` package, then `linter-eslint` and `linter-jscs`. You are covered. Also run `npm run eslint` or `npm run jscs` to verify all files. I would recommend installing `language-babel` package too for syntax highlighting
-
-### Beautify
-With a beautify package installed in your editor it will also do that
+<h2>Research Topics</h2>
+<h3>WebTorrent</h3>
+Use WebTorrent, a BitTorrent client in the browser written using the WebRTC API. A user can turn their browser into a peer on the network by dropping a file into their browser. A magnet link is created and will be sent to the server to be hashed and turned into a URI that references the file.
+<h3>React </h3>
+The page will be built using React components. This includes the page overlay, drop-zone, coffee cup image, and progress bar.
+<h3>AJAX</h3>
+I will use AJAX to send asynchronous requests to the server for hashing, or magnet link retrieval.
+<h3>AWS</h3>
+I will be using AWS EC2 to host this site.

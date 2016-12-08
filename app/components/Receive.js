@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import Progress from './Progress';
 import styles from '../styles/App.css';
 
 class Receive extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      downloading: this.props.receiving,
+      progress: 0
+    };
     this.props.client.on('error', function (err) {
         console.error('ERROR: ' + err.message)
     });
@@ -26,32 +31,32 @@ class Receive extends Component {
       });
     }
   }
+  download(fileName, url) {
+      const a = document.createElement('a');
+      document.body.appendChild(a);
+      a.download = fileName;
+      a.href = url;
+      a.click(); 
+  }
   onTorrent(torrent) {
     const self = this;
-    self.log('Got torrent metadata!');
-    self.log(
-      'Torrent info hash: ' + torrent.infoHash + ' ' +
-      '<a href="' + torrent.magnetURI + '" target="_blank">[Magnet URI]</a> ' +
-      '<a href="' + torrent.torrentFileBlobURL + '" target="_blank" download="' + torrent.name + '.torrent">[Download .torrent]</a>'
-    );
-
-    // Print out progress every 5 seconds
+    // Print out progress every 0.1 seconds
     const interval = setInterval(function () {
-      self.log('Progress: ' + (torrent.progress * 100).toFixed(1) + '%')
-    }, 5000);
-
+      self.setState({progress: (torrent.progress * 100).toFixed(1)});
+    }, 100);
     torrent.on('done', function () {
-      self.log('Progress: 100%');
       clearInterval(interval);
     })
-
     // Render all files into to the page
     torrent.files.forEach(function (file) {
       file.appendTo('.log');
       file.getBlobURL(function (err, url) {
         if (err) return log(err.message)
-        self.log('File done.');
-        self.log('<a href="' + url + '">Download full file: ' + file.name + '</a>');
+        self.setState({
+          progress: 100,
+          receiving: true 
+        });
+        self.download(file.name, url)
         self.props.updateReceiving();
       });
     });
@@ -69,6 +74,7 @@ class Receive extends Component {
   render() {
     return (
       <div className={styles.App}>
+        { this.state.downloading && <Progress progress={this.state.progress} done={this.state.done}/> }
         <div className="log"></div>
       </div>
     );

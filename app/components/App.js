@@ -18,7 +18,7 @@ class App extends Component {
     this.state = {
       receiving: window.location.pathname !== '/',
       URI: ''
-    }
+    };
     this.createTorrent = this.createTorrent.bind(this);
     this.updateReceiving = this.updateReceiving.bind(this);
     dragDrop('body', this.createTorrent);

@@ -8,7 +8,6 @@ class LinkArea extends Component {
   }
   highlightClick() {
     document.getElementById('linkArea').setSelectionRange(0, 9999);
-    console.log('working');
   }
   render() {
     return (

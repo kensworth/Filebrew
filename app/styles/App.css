@@ -11,7 +11,7 @@ p {
 }
 
 .LinkArea {
-	background-color: #9E9E9E;	
+  background-color: #9E9E9E;	
   font-size: 20px;
   font-family: 'Inconsolata', sans-serif;
   border: 0;
@@ -38,7 +38,7 @@ p {
 
 .StaticLogo {
   position: relative;
-  height: 600px;
+  height: 65vh;
   user-drag: none; 
   user-select: none;
   -moz-user-select: none;
@@ -48,9 +48,9 @@ p {
 }
 
 .MovingLogo {
-	animation: AppLogoSpin infinite 10s linear;
+  animation: AppLogoSpin infinite 10s linear;
   position: relative;
-  height: 600px;
+  height: 65vh;
   user-drag: none; 
   user-select: none;
   -moz-user-select: none;
@@ -60,6 +60,6 @@ p {
 }
 
 @keyframes AppLogoSpin {
-	from { transform: rotate(0deg); }
-	to { transform: rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

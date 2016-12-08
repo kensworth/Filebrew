@@ -10,7 +10,7 @@ class Progress extends Component {
     return (
       <ProgressBar 
         bsStyle="success"
-        active
+        active={this.props.progress !== 100}
         now={this.props.progress}
         label={this.props.progress + "%"}
       />

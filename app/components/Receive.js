@@ -40,21 +40,20 @@ class Receive extends Component {
   }
   onTorrent(torrent) {
     const self = this;
-    // Print out progress every 0.1 seconds
+    // update progress every 0.1 seconds
     const interval = setInterval(function () {
       self.setState({progress: (torrent.progress * 100).toFixed(1)});
     }, 100);
     torrent.on('done', function () {
       clearInterval(interval);
     })
-    // Render all files into to the page
+    // render all files into to the page
     torrent.files.forEach(function (file) {
       file.appendTo('.log');
       file.getBlobURL(function (err, url) {
         if (err) return log(err.message)
         self.setState({
-          progress: 100,
-          receiving: true 
+          progress: 100
         });
         self.download(file.name, url)
         self.props.updateReceiving();
@@ -66,15 +65,10 @@ class Receive extends Component {
     p.innerHTML = str;
     document.querySelector('.log').appendChild(p);
   }
-  getCookie(name) {
-    const value = "; " + document.cookie;
-    const parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
-  }
   render() {
     return (
       <div className={styles.App}>
-        { this.state.downloading && <Progress progress={this.state.progress} done={this.state.done}/> }
+        { this.state.downloading && <Progress progress={this.state.progress} /> }
         <div className="log"></div>
       </div>
     );

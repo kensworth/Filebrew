@@ -1,8 +1,16 @@
 const express = require('express');
+const env = require('dotenv').config();
 const router = express.Router();
 const md5 = require('md5');
-const redis = require("redis");
-const client = redis.createClient('redistogo-encircled-68018' || 'redis://localhost:6379/');
+
+if (process.env.REDISTOGO_URL) {
+    const rtg = require('url').parse(process.env.REDISTOGO_URL);
+    var client = require('redis').createClient(rtg.port, rtg.hostname);
+
+    client.auth(rtg.auth.split(":")[1]);
+} else {
+    var client = require('redis').createClient();
+}
 
 client.on('ready', function() {
     console.log('Redis ready');

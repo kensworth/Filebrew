@@ -10,8 +10,8 @@ class Receive extends Component {
       downloading: this.props.seeding,
       progress: 0
     };
-    this.props.client.on('error', function (err) {
-        console.error('ERROR: ' + err.message)
+    this.props.client.on('error', (err) => {
+      console.error('ERROR: ' + err.message);
     });
     this.onTorrent = this.onTorrent.bind(this);
     if (this.props.seeding) {
@@ -19,44 +19,45 @@ class Receive extends Component {
         type: 'POST',
         url: '/retrieve-magnet',
         data: {
-          hash: window.location.pathname.slice(1) 
+          hash: window.location.pathname.slice(1)
         }
       })
       .done((data) => {
         if (!data) {
           // error handling needed
-          console.log('invalid link');
         }
         this.props.client.add(data.magnetURI, this.onTorrent);
       });
     }
   }
   download(fileName, url) {
-      const a = document.createElement('a');
-      document.body.appendChild(a);
-      a.download = fileName;
-      a.href = url;
-      a.click(); 
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.download = fileName;
+    a.href = url;
+    a.click();
   }
   onTorrent(torrent) {
     const self = this;
-    // update progress every 0.1 seconds
-    const interval = setInterval(function () {
-      let progress = parseInt((torrent.progress * 100).toFixed(1));
+    // update progress every 0.2 seconds
+    const interval = setInterval(() => {
+      const progress = parseInt((torrent.progress * 100).toFixed(1), 10);
       self.setState({progress});
-    }, 100);
-    torrent.on('done', function () {
+    }, 200);
+    torrent.on('done', () => {
       clearInterval(interval);
-    })
+    });
     // render all files into to the page
-    torrent.files.forEach(function (file) {
+    torrent.files.forEach((file) => {
       file.appendTo('.log');
-      file.getBlobURL(function (err, url) {
-        if (err) return log(err.message)
+      file.getBlobURL((err, url) => {
+        if (err) {
+          console.log(err.message);
+        }
         self.setState({
           progress: 100
         });
-        self.download(file.name, url)
+        self.download(file.name, url);
         self.props.updateSeeding();
       });
     });
@@ -70,10 +71,15 @@ class Receive extends Component {
     return (
       <div className={styles.App}>
         { this.state.downloading && <Progress progress={this.state.progress} /> }
-        <div className="log"></div>
+        <div className="log" />
       </div>
     );
   }
 }
+
+Receive.propTypes = {
+  seeding: React.PropTypes.bool,
+  client: React.PropTypes.object
+};
 
 export default Receive;

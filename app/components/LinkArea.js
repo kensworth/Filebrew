@@ -16,4 +16,8 @@ class LinkArea extends Component {
   }
 }
 
+LinkArea.propTypes = {
+  URI: React.PropTypes.string.isRequired
+};
+
 export default LinkArea;

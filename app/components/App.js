@@ -49,7 +49,6 @@ class App extends Component {
     const firstPrompt = this.state.seeding ? 'Your file is being brewed.' : 'Drop a file into the cup to start seeding.';
     const secondPrompt = this.state.seeding ? 'Please keep your browser open until the download finishes!' : 'Copy/Paste the URL to a friend to share the file. Make sure you keep your browser open!';
     const coffeeStyle = this.state.seeding ? [styles.StaticLogo, styles.MovingLogo].join(' ') : styles.StaticLogo;
- 
     return (
       <div className={styles.App}>
         <div className={styles.AppHeader}>

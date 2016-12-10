@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const md5 = require('md5');
 const redis = require("redis");
-const client = redis.createClient();
+const client = redis.createClient('redistogo-encircled-68018' || 'redis://localhost:6379/');
 
 client.on('ready', function() {
     console.log('Redis ready');

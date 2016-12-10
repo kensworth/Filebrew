@@ -23,4 +23,8 @@ router.post('/retrieve-magnet', (req, res) => {
     }
 });
 
+router.post('/remove-hash', (req, res) => {
+    console.log('hit');
+});
+
 module.exports = router;

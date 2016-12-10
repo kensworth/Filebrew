@@ -10,6 +10,8 @@ import $ from 'jquery';
 // TODO: error handling for invalid hashes
 // TODO: disallow seeding a new file from a receiving link
 // TODO: Google Analytics
+// TODO: Remove duplicate CSS
+// TODO: Remove hash link
 
 class App extends Component {
   constructor(props) {
@@ -17,11 +19,12 @@ class App extends Component {
     this.client = new WebTorrent();
     this.state = {
       receiving: window.location.pathname !== '/',
-      URI: ''
+      hash: window.location.pathname.slice(1)
     };
     this.createTorrent = this.createTorrent.bind(this);
     this.updateReceiving = this.updateReceiving.bind(this);
     dragDrop('body', this.createTorrent);
+    window.onbeforeunload = this.removeHash;
   }
   createTorrent(files) {
     this.client.seed(files, (torrent) => {
@@ -34,9 +37,22 @@ class App extends Component {
         }
       })
       .done((data) => {
-        this.setState({URI: window.location.href + data.hash});
+        this.setState({
+          hash: data.hash,
+          torrent: torrent,
+          URI: window.location.href + data.hash
+        });
         document.getElementById('coffee').className = styles.MovingLogo;
       });
+    });
+  }
+  removeHash() {
+    $.ajax({
+      type: 'POST',
+      url: '/remove-hash',
+      data: {
+        hash: this.state.hash 
+      }
     });
   }
   updateReceiving() {

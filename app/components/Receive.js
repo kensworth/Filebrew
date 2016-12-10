@@ -42,7 +42,8 @@ class Receive extends Component {
     const self = this;
     // update progress every 0.1 seconds
     const interval = setInterval(function () {
-      self.setState({progress: (torrent.progress * 100).toFixed(1)});
+      let progress = parseInt((torrent.progress * 100).toFixed(1));
+      self.setState({progress});
     }, 100);
     torrent.on('done', function () {
       clearInterval(interval);

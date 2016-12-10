@@ -7,21 +7,19 @@ import Receive from './Receive';
 import LinkArea from './LinkArea';
 import $ from 'jquery';
 
+// TODO: fix prod build
 // TODO: error handling for invalid hashes
 // TODO: disallow seeding a new file from a receiving link
-// TODO: Google Analytics
-// TODO: Remove duplicate CSS
-// TODO: Remove hash link
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.client = new WebTorrent();
     this.state = {
-      receiving: window.location.pathname !== '/'
+      seeding: window.location.pathname !== '/'
     };
     this.createTorrent = this.createTorrent.bind(this);
-    this.updateReceiving = this.updateReceiving.bind(this);
+    this.updateSeeding = this.updateSeeding.bind(this);
     dragDrop('body', this.createTorrent);
   }
   createTorrent(files) {
@@ -38,18 +36,20 @@ class App extends Component {
         this.setState({
           hash: data.hash,
           torrent: torrent,
-          URI: window.location.href + data.hash
+          URI: window.location.href + data.hash,
+          seeding: true
         });
-        document.getElementById('coffee').className = styles.MovingLogo;
       });
     });
   }
-  updateReceiving() {
-    this.setState({receiving: false});
+  updateSeeding() {
+    this.setState({seeding: false});
   }
   render() {
-    const firstPrompt = this.state.receiving ? 'Your file is being brewed.' : 'Drop a file into the cup to start seeding.';
-    const secondPrompt = this.state.receiving ? 'Please keep your browser open until the download finishes!' : 'Copy/Paste the URL to a friend to share the file. Make sure you keep your browser open!';
+    const firstPrompt = this.state.seeding ? 'Your file is being brewed.' : 'Drop a file into the cup to start seeding.';
+    const secondPrompt = this.state.seeding ? 'Please keep your browser open until the download finishes!' : 'Copy/Paste the URL to a friend to share the file. Make sure you keep your browser open!';
+    console.log([styles.StaticLogo, styles.MovingLogo].join(' '));
+    const coffeeStyle = this.state.seeding ? [styles.StaticLogo, styles.MovingLogo].join(' ') : styles.StaticLogo;
  
     return (
       <div className={styles.App}>
@@ -57,10 +57,10 @@ class App extends Component {
           <h1>File Brew</h1>
           <p>{firstPrompt}</p>
           <p>{secondPrompt}</p>
-          <img src={coffee} id="coffee" className={this.state.receiving ? styles.MovingLogo : styles.StaticLogo} />
+          <img src={coffee} id="coffee" className={coffeeStyle} />
         </div>
         { this.state.URI && <LinkArea URI={this.state.URI} /> }
-        <Receive receiving={this.state.receiving} client={this.client} updateReceiving={this.updateReceiving.bind(this)} />
+        <Receive seeding={this.state.seeding} client={this.client} updateSeeding={this.updateSeeding.bind(this)} />
       </div>
     );
   }

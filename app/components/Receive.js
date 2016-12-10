@@ -7,14 +7,14 @@ class Receive extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      downloading: this.props.receiving,
+      downloading: this.props.seeding,
       progress: 0
     };
     this.props.client.on('error', function (err) {
         console.error('ERROR: ' + err.message)
     });
     this.onTorrent = this.onTorrent.bind(this);
-    if (this.props.receiving) {
+    if (this.props.seeding) {
       $.ajax({
         type: 'POST',
         url: '/retrieve-magnet',
@@ -56,7 +56,7 @@ class Receive extends Component {
           progress: 100
         });
         self.download(file.name, url)
-        self.props.updateReceiving();
+        self.props.updateSeeding();
       });
     });
   }

@@ -52,14 +52,6 @@ p {
 
 .MovingLogo {
   animation: AppLogoSpin infinite 10s linear;
-  position: relative;
-  height: 65vh;
-  user-drag: none; 
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
 }
 
 @keyframes AppLogoSpin {

@@ -18,13 +18,11 @@ class App extends Component {
     super(props);
     this.client = new WebTorrent();
     this.state = {
-      receiving: window.location.pathname !== '/',
-      hash: window.location.pathname.slice(1)
+      receiving: window.location.pathname !== '/'
     };
     this.createTorrent = this.createTorrent.bind(this);
     this.updateReceiving = this.updateReceiving.bind(this);
     dragDrop('body', this.createTorrent);
-    window.onbeforeunload = this.removeHash;
   }
   createTorrent(files) {
     this.client.seed(files, (torrent) => {
@@ -44,15 +42,6 @@ class App extends Component {
         });
         document.getElementById('coffee').className = styles.MovingLogo;
       });
-    });
-  }
-  removeHash() {
-    $.ajax({
-      type: 'POST',
-      url: '/remove-hash',
-      data: {
-        hash: this.state.hash 
-      }
     });
   }
   updateReceiving() {

@@ -1,6 +1,7 @@
 /* eslint no-console: 0 */
 
 const path = require('path');
+const favicon = require('serve-favicon');
 const express = require('express');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
@@ -15,6 +16,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', functions);
+app.use(favicon(path.join(__dirname, 'images','favicon.ico')));
 
 // fix production build later
 if (true) {

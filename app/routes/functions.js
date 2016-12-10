@@ -2,14 +2,15 @@ const express = require('express');
 const env = require('dotenv').config();
 const router = express.Router();
 const md5 = require('md5');
+let client;
 
 if (process.env.REDISTOGO_URL) {
     const rtg = require('url').parse(process.env.REDISTOGO_URL);
-    var client = require('redis').createClient(rtg.port, rtg.hostname);
-
+    client = require('redis').createClient(rtg.port, rtg.hostname);
     client.auth(rtg.auth.split(":")[1]);
 } else {
-    var client = require('redis').createClient();
+    // running filebrew locally, must run $ redis-server
+    client = require('redis').createClient();
 }
 
 client.on('ready', function() {

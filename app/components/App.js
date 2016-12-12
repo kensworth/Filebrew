@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import WebTorrent from 'webtorrent';
 import dragDrop from 'drag-drop';
+import GitHub from 'react-icons/lib/fa/github';
 import styles from '../styles/App.css';
 import coffee from '../../images/coffee.png';
 import Receive from './Receive';
@@ -59,6 +60,12 @@ class App extends Component {
         </div>
         { this.state.URI && <LinkArea URI={this.state.URI} /> }
         <Receive seeding={this.state.seeding} client={this.client} updateSeeding={this.updateSeeding.bind(this)} />
+        <div className={styles.GitHub} >
+          <a href="https://github.com/kensworth/Filebrew">
+            <GitHub className={styles.Icon}/>
+            Brewed by Kenneth Zhang
+          </a>
+        </div>
       </div>
     );
   }

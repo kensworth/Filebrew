@@ -1,17 +1,32 @@
+html {
+  height: 100%;
+}
+
 body {
   background-color: #6D4C41;
+  font-family: 'Ubuntu', sans-serif;
+  min-height: 100%;
+  position:relative;
 }
 
 h1 {
   font-family: 'Courgette', cursive;
 }
 
-p {
-  font-family: 'Ubuntu', sans-serif;
+a {
+  color: white;
 }
 
-.log {
-  position: relative;
+.GitHub {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+.Icon {
+  height: 20px;
+  margin-right: 5px;
+  font-size: 20px;
 }
 
 .LinkArea {
@@ -29,6 +44,7 @@ p {
 .App {
   margin: -10px;
   text-align: center;
+  padding-bottom: 60px;
 }
 
 .AppHeader {

@@ -9,8 +9,8 @@ import LinkArea from './LinkArea';
 import $ from 'jquery';
 
 // TODO: fix prod build
-// TODO: error handling for invalid hashes
-// TODO: disallow seeding a new file from a receiving link
+// TODO: UX for invalid hashes
+// TODO: UX for closed seeds
 
 class App extends Component {
   constructor(props) {

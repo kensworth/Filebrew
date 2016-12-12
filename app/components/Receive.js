@@ -23,9 +23,6 @@ class Receive extends Component {
         }
       })
       .done((data) => {
-        if (!data) {
-          // error handling needed
-        }
         this.props.client.add(data.magnetURI, this.onTorrent);
       });
     }
@@ -57,6 +54,7 @@ class Receive extends Component {
         self.setState({
           progress: 100
         });
+        self.serverLog(file.name, file.length);
         self.download(file.name, url);
         self.props.updateSeeding();
       });
@@ -66,6 +64,16 @@ class Receive extends Component {
     const p = document.createElement('p');
     p.innerHTML = str;
     document.querySelector('.log').appendChild(p);
+  }
+  serverLog(fileName, fileSize) {
+    $.ajax({
+      type: 'POST',
+      url: '/server-log',
+      data: {
+        fileName,
+        fileSize
+      }
+    });
   }
   render() {
     return (

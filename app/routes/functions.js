@@ -43,4 +43,9 @@ router.post('/retrieve-magnet', (req, res) => {
   });
 });
 
+router.post('/server-log', (req) => {
+  console.log('File finished: ' + req.body.fileName);
+  console.log(req.body.fileSize + ' bytes transferred');
+});
+
 module.exports = router;

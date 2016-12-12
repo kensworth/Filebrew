@@ -24,6 +24,9 @@ class App extends Component {
     dragDrop('body', this.createTorrent);
   }
   createTorrent(files) {
+    if (this.state.seeding) {
+      return;
+    }
     this.client.seed(files, (torrent) => {
       console.log('Client is seeding ' + torrent.magnetURI);
       $.ajax({
@@ -37,7 +40,7 @@ class App extends Component {
         this.setState({
           hash: data.hash,
           torrent: torrent,
-          URI: window.location.href + data.hash,
+          URI: window.location.host + '/' + data.hash,
           seeding: true
         });
       });

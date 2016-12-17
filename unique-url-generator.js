@@ -4,7 +4,7 @@ import xkcdPassword from 'xkcd-password';
 
 const OPTIONS = {
   numWords: 4,
-  minLength: 5,
+  minLength: 3,
   maxLength: 20
 };
 

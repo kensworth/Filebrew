@@ -1,7 +1,7 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-const urlGenerator = require('../../unique-url-generator.js');
+const urlGenerator = require('../misc/unique-url-generator.js');
 
 require('dotenv').config();
 let redis;

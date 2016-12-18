@@ -1,9 +1,7 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-const md5 = require('md5');
-
-import urlGenerator from '../unique-url-generator.js';
+const urlGenerator = require('../../unique-url-generator.js');
 
 require('dotenv').config();
 let redis;
@@ -17,10 +15,6 @@ if (process.env.REDISTOGO_URL) {
   redis = require('redis').createredis();
 }
 
-redis.on('connect', () => {
-  console.log('Redis connected!');
-});
-
 redis.on('error', (err) => {
   console.log('Error ' + err);
 });
@@ -28,14 +22,13 @@ redis.on('error', (err) => {
 // uses urlGenerator helper file (included at top)
 // creates a new unique URL to store as key for the redis store
 router.post('/create-hash', (req, res) => {
-    urlGenerator.generateBrew().then(function(url) {
-        const magnet = req.body.manget;
-        const brew = url;
-        redis.set(brew, magnet);
-        // expire keys after 24 hours
-        redis.expire(brew, 60 * 60 * 24);
-        res.send({brew});
-    });
+  const magnet = req.body.magnet;
+  urlGenerator().then((url) => {
+    redis.set(url, magnet);
+    // expire keys after 24 hours
+    redis.expire(url, 60 * 60 * 24);
+    res.send({hash: url});
+  });
 });
 
 router.post('/retrieve-magnet', (req, res) => {

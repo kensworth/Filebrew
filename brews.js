@@ -1,4 +1,4 @@
-export default [
+module.exports = [
     "affogato",
     "americano",
     "bicerin",
